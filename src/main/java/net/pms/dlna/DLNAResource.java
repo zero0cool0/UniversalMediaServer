@@ -3262,8 +3262,6 @@ public abstract class DLNAResource extends HTTPResource implements Cloneable, Ru
 			try {
 				return downloadAndSend(thumb, true);
 			} catch (Exception e) {}
-		} else {
-			
 		}
 
 		// use generic images for medias whose don't provide thumbnails
