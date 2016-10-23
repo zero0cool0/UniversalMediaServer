@@ -3266,13 +3266,11 @@ public abstract class DLNAResource extends HTTPResource implements Cloneable, Ru
 
 		// use generic images for media whose don't provide thumbnails when exists in resources/images/ folder
 		if (defaultRenderer != null && defaultRenderer.isForceJPGThumbnails()) { 
-			is = getResourceInputStream("images/formats/" + format + ".jpg");
-			if (is != null) {
+			if ((is = getResourceInputStream("images/formats/" + format + ".jpg")) != null) {
 				return is;
 			}
 		} else {
-			is = getResourceInputStream("images/formats/" + format + ".png");
-			if (is != null) {
+			if ((is = getResourceInputStream("images/formats/" + format + ".png")) != null) {
 				return is;
 			}
 		}
