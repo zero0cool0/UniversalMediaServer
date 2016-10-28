@@ -87,6 +87,10 @@ public class PMS {
 	private static final String TRACE = "trace";
 	public static final String NAME = "Universal Media Server";
 	public static final String CROWDIN_LINK = "https://crowdin.com/project/universalmediaserver";
+	private static BufferedImage audioIcon;
+	private static BufferedImage imageIcon;
+	private static BufferedImage videoIcon;
+	private static BufferedImage unknownIcon;
 
 	/**
 	 * @deprecated The version has moved to the resources/project.properties file. Use {@link #getVersion()} instead.
@@ -625,6 +629,28 @@ public class PMS {
 
 		// Make sure buffer is destroyed
 		outputParams.cleanup = true;
+
+		InputStream is;
+		ClassLoader cl = this.getClass().getClassLoader();
+		is = cl.getResourceAsStream("resources/images/formats/audio.png");
+		if (is != null) {
+			audioIcon = ImageIO.read(is);
+		}
+
+		is = cl.getResourceAsStream("resources/images/formats/image.png");
+		if (is != null) {
+			imageIcon = ImageIO.read(is);
+		}
+
+		is = cl.getResourceAsStream("resources/images/formats/video.png");
+		if (is != null) {
+			videoIcon = ImageIO.read(is);
+		}
+
+		is = cl.getResourceAsStream("resources/images/formats/unknown.png");
+		if (is != null) {
+			unknownIcon = ImageIO.read(is);
+		}
 
 		// Initialize MPlayer and FFmpeg to let them generate fontconfig cache/s
 		if (!configuration.isDisableSubtitles()) {
@@ -1930,5 +1956,21 @@ public class PMS {
 
 	public static void setKey(String key, String val) {
 		instance.keysDb.set(key, val);
+	}
+
+	public static BufferedImage getAudioIcon() {
+		return audioIcon;
+	}
+
+	public static BufferedImage getImageIcon() {
+		return imageIcon;
+	}
+
+	public static BufferedImage getVideoIcon() {
+		return videoIcon;
+	}
+
+	public static BufferedImage getUnknownIcon() {
+		return unknownIcon;
 	}
 }

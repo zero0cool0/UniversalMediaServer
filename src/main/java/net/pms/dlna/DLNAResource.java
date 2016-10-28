@@ -18,6 +18,13 @@
  */
 package net.pms.dlna;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.URLDecoder;
@@ -28,6 +35,9 @@ import java.util.*;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
+
 import net.pms.Messages;
 import net.pms.PMS;
 import net.pms.configuration.FormatConfiguration;
@@ -3264,13 +3274,26 @@ public abstract class DLNAResource extends HTTPResource implements Cloneable, Ru
 			} catch (Exception e) {}
 		}
 
-		// use generic images for media whose don't provide thumbnails when exists in resources/images/ folder
-		if (defaultRenderer != null && defaultRenderer.isForceJPGThumbnails()) { 
-			if ((is = getResourceInputStream("images/formats/" + format + ".jpg")) != null) {
+		BufferedImage bi;
+		if (format.isAudio()) {
+			bi = PMS.getAudioIcon();
+		} else if (format.isImage()) {
+			bi = PMS.getImageIcon();
+		} else if (format.isVideo()) {
+			bi = PMS.getVideoIcon();
+		} else {
+			bi = PMS.getUnknownIcon();
+		}
+
+		String formatString = media.getContainer();
+		if (defaultRenderer != null && defaultRenderer.isForceJPGThumbnails()) {
+			is = ImagesUtil.AddFormatLabelToImage(bi, formatString, "jpeg");
+			if (is != null) {
 				return is;
 			}
 		} else {
-			if ((is = getResourceInputStream("images/formats/" + format + ".png")) != null) {
+			is = ImagesUtil.AddFormatLabelToImage(bi, formatString, "png");
+			if (is != null) {
 				return is;
 			}
 		}

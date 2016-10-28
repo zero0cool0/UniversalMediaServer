@@ -1,9 +1,19 @@
 package net.pms.util;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import java.io.*;
+
+import javax.imageio.ImageIO;
+
 import mediautil.gen.Log;
 import mediautil.image.jpeg.LLJTran;
 import mediautil.image.jpeg.LLJTranException;
+import net.pms.PMS;
 import net.pms.configuration.FormatConfiguration;
 import net.pms.dlna.DLNAMediaInfo;
 import org.apache.commons.imaging.ImageInfo;
@@ -144,5 +154,22 @@ public class ImagesUtil {
 		} else if (formatName.startsWith("TIF")) {
 			media.setCodecV(FormatConfiguration.TIFF);
 		}
+	}
+
+	public static InputStream AddFormatLabelToImage(BufferedImage image, String label, String outputImageFormat) throws IOException {
+		// copy image to not affect the original one
+		ColorModel cm = image.getColorModel();
+		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+		WritableRaster raster = image.copyData(null);
+		BufferedImage img = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+
+		Graphics2D g = img.createGraphics();
+		g.drawImage(img, 0, 0, null);
+		g.setColor(Color.WHITE);
+		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+        g.drawString(label.toUpperCase(), 30, 30);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ImageIO.write(img, outputImageFormat, out);
+		return new ByteArrayInputStream(out.toByteArray());
 	}
 }
