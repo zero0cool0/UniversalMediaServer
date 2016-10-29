@@ -153,7 +153,7 @@ public class ImagesUtil {
 		}
 	}
 
-	public static InputStream AddFormatLabelToImage(BufferedImage image, String label, String outputImageFormat) throws IOException {
+	public static InputStream addFormatLabelToImage(BufferedImage image, String label, String outputImageFormat) throws IOException {
 		// copy image to not affect the original one
 		ColorModel cm = image.getColorModel();
 		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();

@@ -3278,12 +3278,12 @@ public abstract class DLNAResource extends HTTPResource implements Cloneable, Ru
 
 		String formatString = media.getContainer();
 		if (defaultRenderer != null && defaultRenderer.isForceJPGThumbnails()) {
-			is = ImagesUtil.AddFormatLabelToImage(bi, formatString, "jpeg");
+			is = ImagesUtil.addFormatLabelToImage(bi, formatString, "jpeg");
 			if (is != null) {
 				return is;
 			}
 		} else {
-			is = ImagesUtil.AddFormatLabelToImage(bi, formatString, "png");
+			is = ImagesUtil.addFormatLabelToImage(bi, formatString, "png");
 			if (is != null) {
 				return is;
 			}
