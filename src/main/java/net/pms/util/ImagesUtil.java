@@ -167,6 +167,7 @@ public class ImagesUtil {
         g.drawString(label.toUpperCase(), 30, 30);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ImageIO.write(img, outputImageFormat, out);
+		g.dispose();
 		return new ByteArrayInputStream(out.toByteArray());
 	}
 }

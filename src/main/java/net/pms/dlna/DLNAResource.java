@@ -3265,20 +3265,23 @@ public abstract class DLNAResource extends HTTPResource implements Cloneable, Ru
 			} catch (Exception e) {}
 		}
 
-		BufferedImage bi;
-		if (format.isAudio()) {
-			bi = PMS.getAudioIcon();
-		} else if (format.isImage()) {
-			bi = PMS.getImageIcon();
-		} else if (format.isVideo()) {
-			bi = PMS.getVideoIcon();
-		} else {
-			bi = PMS.getUnknownIcon();
-		}
+		if (media != null) {
+			BufferedImage bi;
+			if (media.isAudio()) {
+				bi = PMS.getAudioIcon();
+			} else if (media.isImage()) {
+				bi = PMS.getImageIcon();
+			} else if (media.isVideo()) {
+				bi = PMS.getVideoIcon();
+			} else {
+				bi = PMS.getUnknownIcon();
+			}
 
-		is = ImagesUtil.addFormatLabelToImage(bi, media.getContainer(), defaultRenderer != null && defaultRenderer.isForceJPGThumbnails() ? "jpeg" : "png");
-		if (is != null) {
-			return is;
+			is = ImagesUtil.addFormatLabelToImage(bi, media.getContainer(), defaultRenderer != null && defaultRenderer.isForceJPGThumbnails() ? "jpeg" : "png");
+			if (is != null) {
+				LOGGER.trace("Created default thumbnail/icon for the media: {}", getName());
+				return is;
+			}
 		}
 
 		// Or none of the above
