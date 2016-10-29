@@ -87,10 +87,10 @@ public class PMS {
 	private static final String TRACE = "trace";
 	public static final String NAME = "Universal Media Server";
 	public static final String CROWDIN_LINK = "https://crowdin.com/project/universalmediaserver";
-	private static BufferedImage audioIcon;
-	private static BufferedImage imageIcon;
-	private static BufferedImage videoIcon;
-	private static BufferedImage unknownIcon;
+	private static BufferedImage genericAudioIcon;
+	private static BufferedImage genericImageIcon;
+	private static BufferedImage genericVideoIcon;
+	private static BufferedImage genericUnknownIcon;
 
 	/**
 	 * @deprecated The version has moved to the resources/project.properties file. Use {@link #getVersion()} instead.
@@ -634,22 +634,22 @@ public class PMS {
 		ClassLoader cl = this.getClass().getClassLoader();
 		is = cl.getResourceAsStream("resources/images/formats/audio.png");
 		if (is != null) {
-			audioIcon = ImageIO.read(is);
+			genericAudioIcon = ImageIO.read(is);
 		}
 
 		is = cl.getResourceAsStream("resources/images/formats/image.png");
 		if (is != null) {
-			imageIcon = ImageIO.read(is);
+			genericImageIcon = ImageIO.read(is);
 		}
 
 		is = cl.getResourceAsStream("resources/images/formats/video.png");
 		if (is != null) {
-			videoIcon = ImageIO.read(is);
+			genericVideoIcon = ImageIO.read(is);
 		}
 
 		is = cl.getResourceAsStream("resources/images/formats/unknown.png");
 		if (is != null) {
-			unknownIcon = ImageIO.read(is);
+			genericUnknownIcon = ImageIO.read(is);
 		}
 
 		// Initialize MPlayer and FFmpeg to let them generate fontconfig cache/s
@@ -1958,19 +1958,19 @@ public class PMS {
 		instance.keysDb.set(key, val);
 	}
 
-	public static BufferedImage getAudioIcon() {
-		return audioIcon;
+	public static BufferedImage getGenericAudioIcon() {
+		return genericAudioIcon;
 	}
 
-	public static BufferedImage getImageIcon() {
-		return imageIcon;
+	public static BufferedImage getGenericImageIcon() {
+		return genericImageIcon;
 	}
 
-	public static BufferedImage getVideoIcon() {
-		return videoIcon;
+	public static BufferedImage getGenericVideoIcon() {
+		return genericVideoIcon;
 	}
 
-	public static BufferedImage getUnknownIcon() {
-		return unknownIcon;
+	public static BufferedImage getGenericUnknownIcon() {
+		return genericUnknownIcon;
 	}
 }

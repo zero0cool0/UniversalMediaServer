@@ -3268,13 +3268,13 @@ public abstract class DLNAResource extends HTTPResource implements Cloneable, Ru
 		if (media != null) {
 			BufferedImage bi;
 			if (media.isAudio()) {
-				bi = PMS.getAudioIcon();
+				bi = PMS.getGenericAudioIcon();
 			} else if (media.isImage()) {
-				bi = PMS.getImageIcon();
+				bi = PMS.getGenericImageIcon();
 			} else if (media.isVideo()) {
-				bi = PMS.getVideoIcon();
+				bi = PMS.getGenericVideoIcon();
 			} else {
-				bi = PMS.getUnknownIcon();
+				bi = PMS.getGenericUnknownIcon();
 			}
 
 			is = ImagesUtil.addFormatLabelToImage(bi, media.getContainer(), defaultRenderer != null && defaultRenderer.isForceJPGThumbnails() ? "jpeg" : "png");
