@@ -164,7 +164,7 @@ public class ImagesUtil {
 		g.drawImage(img, 0, 0, null);
 		g.setColor(Color.WHITE);
 		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
-        g.drawString(label.toUpperCase(), 30, 30);
+		g.drawString(label.toUpperCase(), 30, 30);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ImageIO.write(img, outputImageFormat, out);
 		g.dispose();
