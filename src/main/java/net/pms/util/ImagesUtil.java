@@ -161,10 +161,18 @@ public class ImagesUtil {
 		BufferedImage img = new BufferedImage(cm, raster, isAlphaPremultiplied, null);
 
 		Graphics2D g = img.createGraphics();
-		g.drawImage(img, 0, 0, null);
-		g.setColor(Color.WHITE);
-		g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
-		g.drawString(label.toUpperCase(), 30, 30);
+		if ("jpeg".equals(outputImageFormat)) {
+			g.drawImage(img, 0, 0, 120, 120, null);
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 15));
+			g.drawString(label.toUpperCase(), 30, 30);
+		} else {
+			g.drawImage(img, 0, 0, null);
+			g.setColor(Color.WHITE);
+			g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 36));
+			g.drawString(label.toUpperCase(), 62, 62);
+		}
+		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		ImageIO.write(img, outputImageFormat, out);
 		g.dispose();
