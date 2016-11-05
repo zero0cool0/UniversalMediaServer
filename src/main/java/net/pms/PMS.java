@@ -1959,18 +1959,18 @@ public class PMS {
 	}
 
 	public static BufferedImage getGenericAudioIcon() {
-		return get().genericAudioIcon;
+		return instance.genericAudioIcon;
 	}
 
 	public static BufferedImage getGenericImageIcon() {
-		return get().genericImageIcon;
+		return instance.genericImageIcon;
 	}
 
 	public static BufferedImage getGenericVideoIcon() {
-		return get().genericVideoIcon;
+		return instance.genericVideoIcon;
 	}
 
 	public static BufferedImage getGenericUnknownIcon() {
-		return get().genericUnknownIcon;
+		return instance.genericUnknownIcon;
 	}
 }
