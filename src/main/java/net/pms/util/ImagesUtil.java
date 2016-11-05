@@ -156,6 +156,15 @@ public class ImagesUtil {
 		}
 	}
 
+	/**
+	 * Add the format(container) name of the media to the generic icon image.
+	 *
+	 * @param image BufferdImage to be the label added
+	 * @param label the media container name to be added as an label
+	 * @param renderer the renderer configuration
+	 * 
+	 * @return the generic icon with the container label added and scaled in accordance with renderer setting
+	 */
 	public static InputStream addFormatLabelToImage(BufferedImage image, String label, RendererConfiguration renderer) throws IOException {
 		// copy image to not affect the original one
 		ColorModel cm = image.getColorModel();
